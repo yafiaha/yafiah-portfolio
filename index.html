@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yafiah Abdullah — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A38;
+    --ink-soft:#3D4C5C;
+    --paper:#FAFAF7;
+    --paper-card:#FFFFFF;
+    --line:#E1DFD6;
+    --accent:#0F6E56;
+    --accent-soft:#E1F0EB;
+    --coral:#993C1D;
+    --coral-soft:#FAECE7;
+    --muted:#585C62;
+  }
+  *{box-sizing:border-box;}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+  .skip-link{
+    position:absolute;
+    left:-9999px;
+    top:0;
+    background:var(--accent);
+    color:#fff;
+    padding:12px 20px;
+    z-index:100;
+    border-radius:0 0 8px 0;
+  }
+  .skip-link:focus{
+    left:0;
+  }
+  .sr-only{
+    position:absolute;
+    width:1px;height:1px;
+    padding:0;margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0;
+  }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.65;
+  }
+  h1,h2,h3,.serif{font-family:'Source Serif 4',serif;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px;}
+
+  nav.sitenav{
+    position:sticky;
+    top:0;
+    background:rgba(250,250,247,0.96);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    z-index:10;
+  }
+  nav.sitenav .wrap{
+    display:flex;
+    gap:36px;
+    overflow-x:auto;
+    padding:18px 28px;
+    scrollbar-width:thin;
+  }
+  nav.sitenav a{
+    font-size:13px;
+    color:var(--ink-soft);
+    text-decoration:none;
+    white-space:nowrap;
+    padding:6px 0;
+    letter-spacing:0.01em;
+    border-bottom:2px solid transparent;
+  }
+  nav.sitenav a:hover{
+    color:var(--accent);
+    border-color:var(--accent);
+  }
+
+  header.hero{
+    padding:96px 0 64px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:18px;
+  }
+  h1{
+    font-size:44px;
+    font-weight:500;
+    line-height:1.15;
+    margin:0 0 20px;
+    max-width:640px;
+  }
+  .lede{
+    font-size:18px;
+    color:var(--ink-soft);
+    max-width:600px;
+    margin:0 0 28px;
+  }
+  .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .tag{
+    font-size:13px;
+    padding:6px 14px;
+    border:1px solid var(--line);
+    border-radius:100px;
+    color:var(--ink-soft);
+  }
+  .tab-order{
+    width:280px;
+    height:auto;
+    margin-top:40px;
+    display:block;
+  }
+
+  section.impact{
+    padding:56px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .impact-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:32px;
+  }
+  .impact-num{
+    font-family:'Source Serif 4',serif;
+    font-size:36px;
+    color:var(--accent);
+    font-weight:500;
+    margin-bottom:6px;
+  }
+  .impact-label{
+    font-size:13px;
+    color:var(--muted);
+    line-height:1.4;
+  }
+  .note{
+    font-size:13px;
+    color:var(--muted);
+    margin-top:24px;
+    font-style:italic;
+  }
+
+  section.about{
+    padding:48px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .about-text{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:680px;
+    margin:0;
+  }
+
+  section.cases{padding:80px 0;}
+  .case{
+    padding:56px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .case:last-child{border-bottom:none;}
+  .case-num{
+    font-size:13px;
+    color:var(--muted);
+    letter-spacing:0.04em;
+    margin-bottom:10px;
+  }
+  .case-title{
+    font-size:28px;
+    font-weight:500;
+    margin:0 0 8px;
+  }
+  .status{
+    display:inline-block;
+    font-size:12px;
+    font-weight:600;
+    padding:4px 10px;
+    border-radius:100px;
+    margin-bottom:22px;
+  }
+  .status.live{background:var(--accent-soft);color:var(--accent);}
+  .status.progress{background:var(--coral-soft);color:var(--coral);}
+
+  .case-grid{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:6px 24px;
+    margin-bottom:20px;
+  }
+  .case-label{
+    font-size:13px;
+    font-weight:600;
+    color:var(--muted);
+    padding-top:2px;
+  }
+  .case-body{
+    font-size:15px;
+    color:var(--ink-soft);
+    margin:0 0 20px;
+  }
+  .case-body.tight{margin-bottom:0;}
+
+  .pill-row{display:flex;flex-wrap:wrap;gap:6px;}
+  .pill{
+    font-size:12px;
+    padding:4px 10px;
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    color:var(--ink-soft);
+  }
+
+  .artifact-slot{
+    margin-top:24px;
+    padding:20px;
+    background:var(--paper-card);
+    border:1px dashed var(--line);
+    border-radius:10px;
+  }
+  .artifact-slot svg{display:block;width:100%;height:auto;}
+  .artifact-caption{
+    font-size:13px;
+    color:var(--muted);
+    text-align:center;
+    margin-top:10px;
+  }
+  .artifact-todo{
+    font-size:13px;
+    color:var(--muted);
+    text-align:center;
+    padding:32px 0;
+  }
+
+  footer{
+    padding:64px 0 96px;
+    text-align:center;
+    color:var(--muted);
+    font-size:14px;
+  }
+  footer a{
+    color:var(--muted);
+    text-decoration:none;
+    border-bottom:1px solid var(--line);
+  }
+  footer a:hover{
+    color:var(--accent);
+    border-color:var(--accent);
+  }
+  .footer-links{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width:640px){
+    h1{font-size:32px;}
+    .impact-grid{grid-template-columns:repeat(2,1fr);gap:24px;}
+    .case-grid{grid-template-columns:1fr;gap:4px;}
+    .case-label{padding-top:12px;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<nav class="sitenav" aria-label="Page sections">
+  <div class="wrap">
+    <a href="#about">About</a>
+    <a href="#impact">Impact</a>
+    <a href="#case-01">Accessibility program</a>
+    <a href="#case-02">CivicPlus redesign</a>
+    <a href="#case-03">Forms &amp; documents</a>
+    <a href="#case-04">AFSCME site</a>
+    <a href="#case-05">AI assistant</a>
+  </div>
+</nav>
+
+<main id="main">
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Yafiah Abdullah</div>
+    <h1>I build and manage digital systems that make government services easier to access.</h1>
+    <p class="lede">I'm a Web Administrator specializing in digital accessibility, civic technology, and public-sector digital services. My work spans WCAG/ADA compliance, CMS governance, enterprise platform implementation, and frontend development.</p>
+    <div class="tags">
+      <span class="tag">Web Administration</span>
+      <span class="tag">Digital Accessibility</span>
+      <span class="tag">Civic Technology</span>
+      <span class="tag">Frontend Development</span>
+    </div>
+    <svg class="tab-order" viewBox="0 0 420 50" aria-hidden="true">
+      <path d="M35 25 L145 25 L145 25 L255 25 L255 25 L365 25" fill="none" stroke="#0F6E56" stroke-width="1" stroke-dasharray="4 5" opacity="0.4"/>
+      <circle cx="35" cy="25" r="8" fill="none" stroke="#0F6E56" stroke-width="1.5"/>
+      <circle cx="145" cy="25" r="8" fill="none" stroke="#0F6E56" stroke-width="1.5"/>
+      <circle cx="255" cy="25" r="8" fill="none" stroke="#0F6E56" stroke-width="1.5"/>
+      <rect x="347" y="17" width="16" height="16" rx="3" fill="none" stroke="#0F6E56" stroke-width="1.5"/>
+    </svg>
+  </div>
+</header>
+
+<section class="impact" id="impact" aria-labelledby="impact-heading">
+  <div class="wrap">
+    <h2 id="impact-heading" class="sr-only">Impact</h2>
+    <div class="impact-grid">
+      <div>
+        <div class="impact-num">10+</div>
+        <div class="impact-label">County departments supported through digital accessibility and web operations</div>
+      </div>
+      <div>
+        <div class="impact-num">20K+</div>
+        <div class="impact-label">Documents within the county's accessible document delivery environment</div>
+      </div>
+      <div>
+        <div class="impact-num">5</div>
+        <div class="impact-label">Civic technology platforms included in resident-assistant architecture</div>
+      </div>
+      <div>
+        <div class="impact-num">[X]</div>
+        <div class="impact-label">County Acrobat users supported by the accessibility training initiative</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about" aria-labelledby="about-heading">
+  <div class="wrap">
+    <h2 id="about-heading" class="sr-only">About</h2>
+    <p class="about-text">I work at the intersection of public service, accessibility, and technology. I focus on turning complex digital systems into services residents can actually use — whether that means improving a CMS, diagnosing inaccessible vendor markup, building a new frontend, or coordinating implementation across departments and vendors.</p>
+  </div>
+</section>
+
+<section class="cases">
+  <div class="wrap">
+
+    <div class="case" id="case-01">
+      <div class="case-num">01</div>
+      <h2 class="case-title">Countywide digital accessibility program</h2>
+      <span class="status live">Ongoing</span>
+
+      <div class="case-grid">
+        <div class="case-label">Challenge</div>
+        <p class="case-body">New Castle County needed a scalable approach to digital accessibility across public-facing websites, documents, forms, and content managed by multiple departments — with no centralized remediation workflow, training program, or governance model in place.</p>
+
+        <div class="case-label">What I did</div>
+        <p class="case-body">I developed and implemented a countywide accessibility program combining website auditing, document remediation, editor training, accessibility testing, and CMS governance — moving accessibility from reactive fixes to an ongoing operational standard.</p>
+
+        <div class="case-label">My role</div>
+        <p class="case-body">I lead the program end-to-end: accessibility audits, remediation tracking, editor training, vendor coordination, CMS governance standards, document accessibility workflows, and identifying issues that require platform-level remediation.</p>
+
+        <div class="case-label">Approach</div>
+        <div class="case-body tight">
+          <div class="pill-row">
+            <span class="pill">WCAG 2.1 AA</span>
+            <span class="pill">ADA Title II / DOJ</span>
+            <span class="pill">Adobe Acrobat Pro</span>
+            <span class="pill">Monsido</span>
+            <span class="pill">WAVE</span>
+            <span class="pill">Accessibility Insights</span>
+            <span class="pill">DocAccess</span>
+            <span class="pill">CivicPlus</span>
+          </div>
+        </div>
+
+        <div class="case-label">Impact</div>
+        <p class="case-body tight">Built a remediation process supporting 10+ departments and established accessibility training for county Acrobat users, extending accessibility work beyond webpages into PDFs, forms, and document repositories.</p>
+      </div>
+
+      <div class="artifact-slot">
+        <div class="artifact-todo">Add a screenshot of an audit report or remediation-tracking view here</div>
+      </div>
+    </div>
+
+    <div class="case" id="case-02">
+      <div class="case-num">02</div>
+      <h2 class="case-title">County website redesign &amp; CivicPlus implementation</h2>
+      <span class="status live">Launched</span>
+
+      <div class="case-grid">
+        <div class="case-label">Challenge</div>
+        <p class="case-body">The county's public website required a full redesign and platform implementation while maintaining thousands of pages of resident-facing information across multiple departments.</p>
+
+        <div class="case-label">What I did</div>
+        <p class="case-body">I served as a key technical and operational liaison between CivicPlus and county stakeholders, coordinating platform configuration, content implementation, testing, accessibility review, and launch readiness.</p>
+
+        <div class="case-label">My role</div>
+        <p class="case-body">I translated departmental requirements into CMS implementation decisions, coordinated directly with the vendor, performed pre- and post-launch QA, identified configuration issues, and supported departments through the platform transition.</p>
+
+        <div class="case-label">Approach</div>
+        <div class="case-body tight">
+          <div class="pill-row">
+            <span class="pill">CivicPlus CMS</span>
+            <span class="pill">WCAG testing</span>
+            <span class="pill">Content governance</span>
+            <span class="pill">Information architecture</span>
+            <span class="pill">QA workflows</span>
+          </div>
+        </div>
+
+        <div class="case-label">Impact</div>
+        <p class="case-body tight">Successfully launched a redesigned resident-facing website while establishing stronger content governance, accessibility controls, and post-launch QA processes.</p>
+      </div>
+
+      <div class="artifact-slot">
+        <div class="artifact-todo">Add: before → redesigned homepage → mobile view → one internal service page, with 2–3 annotated decisions</div>
+      </div>
+    </div>
+
+    <div class="case" id="case-03">
+      <div class="case-num">03</div>
+      <h2 class="case-title">Accessible forms &amp; document infrastructure</h2>
+      <span class="status live">Ongoing</span>
+
+      <div class="case-grid">
+        <div class="case-label">Challenge</div>
+        <p class="case-body">The county relies on third-party platforms to deliver public forms and documents, but some platform-generated HTML, ARIA markup, form controls, and document workflows introduced accessibility barriers that couldn't be corrected through standard CMS or form-builder interfaces.</p>
+
+        <div class="case-label">What I did</div>
+        <p class="case-body">I developed a testing and escalation workflow for identifying accessibility defects — distinguishing content-level issues from vendor-generated platform issues, documenting failures, testing proposed fixes, and coordinating remediation with software vendors.</p>
+
+        <div class="case-label">My role</div>
+        <p class="case-body">I conduct technical accessibility testing, reproduce issues across multiple testing tools, document affected components, evaluate available workarounds, and work directly with vendors when remediation requires changes to platform-generated code.</p>
+
+        <div class="case-label">Approach</div>
+        <div class="case-body tight">
+          <div class="pill-row">
+            <span class="pill">SimpliGov</span>
+            <span class="pill">DocAccess</span>
+            <span class="pill">WAVE</span>
+            <span class="pill">Accessibility Insights</span>
+            <span class="pill">Adobe Acrobat Pro</span>
+            <span class="pill">HTML/ARIA analysis</span>
+            <span class="pill">WCAG 2.1 AA</span>
+          </div>
+        </div>
+
+        <div class="case-label">Impact</div>
+        <p class="case-body tight">Created a repeatable method for separating editor-remediable accessibility issues from platform defects, letting the county escalate technical problems with substantially better evidence.</p>
+      </div>
+
+      <div class="artifact-slot">
+        <svg viewBox="0 0 680 460" role="img" aria-label="Accessibility testing and escalation workflow diagram">
+          <defs><marker id="arrow3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#6B6F76" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+          <g><rect x="250" y="20" width="180" height="44" rx="8" fill="#FAFAF7" stroke="#E1DFD6" stroke-width="1"/><text x="340" y="42" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="14" fill="#1B2A38">Audit</text></g>
+          <line x1="340" y1="64" x2="340" y2="100" stroke="#6B6F76" stroke-width="1" marker-end="url(#arrow3)"/>
+          <g><rect x="250" y="100" width="180" height="56" rx="8" fill="#FAFAF7" stroke="#E1DFD6" stroke-width="1"/><text x="340" y="120" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="14" fill="#1B2A38">Classify</text><text x="340" y="138" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="12" fill="#6B6F76">Content vs. platform issue</text></g>
+          <path d="M340 156L340 180L185 180L185 200" fill="none" stroke="#6B6F76" stroke-width="1" marker-end="url(#arrow3)"/>
+          <path d="M340 156L340 180L495 180L495 200" fill="none" stroke="#6B6F76" stroke-width="1" marker-end="url(#arrow3)"/>
+          <g><rect x="60" y="200" width="250" height="56" rx="8" fill="#E1F0EB" stroke="#0F6E56" stroke-width="1"/><text x="185" y="220" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="14" fill="#085041">Content issue</text><text x="185" y="238" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="12" fill="#0F6E56">Internal remediation</text></g>
+          <g><rect x="370" y="200" width="250" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="1"/><text x="495" y="220" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="14" fill="#4A1B0C">Platform issue</text><text x="495" y="238" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="12" fill="#993C1D">Vendor escalation</text></g>
+          <path d="M185 256L185 280L340 280L340 300" fill="none" stroke="#6B6F76" stroke-width="1" marker-end="url(#arrow3)"/>
+          <path d="M495 256L495 280L340 280L340 300" fill="none" stroke="#6B6F76" stroke-width="1" marker-end="url(#arrow3)"/>
+          <g><rect x="250" y="300" width="180" height="44" rx="8" fill="#FAFAF7" stroke="#E1DFD6" stroke-width="1"/><text x="340" y="322" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="14" fill="#1B2A38">Validate</text></g>
+          <line x1="340" y1="344" x2="340" y2="380" stroke="#6B6F76" stroke-width="1" marker-end="url(#arrow3)"/>
+          <g><rect x="250" y="380" width="180" height="44" rx="8" fill="#FAFAF7" stroke="#E1DFD6" stroke-width="1"/><text x="340" y="402" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="14" fill="#1B2A38">Monitor</text></g>
+        </svg>
+        <div class="artifact-caption">Testing and escalation workflow: content issues remediated internally, platform issues escalated to the vendor, both validated and monitored ongoing</div>
+      </div>
+    </div>
+
+    <div class="case" id="case-04">
+      <div class="case-num">04</div>
+      <h2 class="case-title">AFSCME Local 6368 website &amp; deployment infrastructure</h2>
+      <span class="status live">Live</span>
+
+      <div class="case-grid">
+        <div class="case-label">Challenge</div>
+        <p class="case-body">AFSCME Local 6368 needed a modern digital presence for communicating with members, publishing union information, recruiting new members, and distributing recurring content without relying on an outdated or ad hoc publishing process.</p>
+
+        <div class="case-label">What I did</div>
+        <p class="case-body">I designed and developed a responsive union website and implemented a Git-based deployment workflow using GitHub and Cloudflare Pages, providing reliable hosting and streamlined site updates.</p>
+
+        <div class="case-label">My role</div>
+        <p class="case-body">I own the site's complete technical lifecycle: frontend development, hosting architecture, deployment, content structure, feature development, troubleshooting, and ongoing maintenance.</p>
+
+        <div class="case-label">Approach</div>
+        <div class="case-body tight">
+          <div class="pill-row">
+            <span class="pill">HTML</span>
+            <span class="pill">CSS</span>
+            <span class="pill">JavaScript</span>
+            <span class="pill">Git</span>
+            <span class="pill">GitHub</span>
+            <span class="pill">Cloudflare Pages</span>
+            <span class="pill">Responsive design</span>
+          </div>
+        </div>
+
+        <div class="case-label">Impact</div>
+        <p class="case-body tight">Established a maintainable digital platform and modern deployment workflow that lets the organization communicate directly with members and prospective members.</p>
+      </div>
+
+      <div class="artifact-slot">
+        <div class="artifact-todo">Add: desktop + mobile screenshots, plus a simple GitHub → Cloudflare Pages deployment diagram</div>
+      </div>
+    </div>
+
+    <div class="case" id="case-05">
+      <div class="case-num">05</div>
+      <h2 class="case-title">AI resident service assistant</h2>
+      <span class="status progress">In development — what I'm building now</span>
+
+      <div class="case-grid">
+        <div class="case-label">Challenge</div>
+        <p class="case-body">Residents frequently contact the county for routine information that already exists across several disconnected civic platforms — recreation, service requests, legislation, meetings, and general county services.</p>
+
+        <div class="case-label">What I did</div>
+        <p class="case-body">I am leading the architecture and implementation planning for an AI-powered resident assistant designed to surface information across the county's civic technology ecosystem through a single conversational interface.</p>
+
+        <div class="case-label">My role</div>
+        <p class="case-body">I am defining platform requirements, information sources, integration architecture, content behavior, and the resident experience across CivicPlus, CivicRec, SeeClickFix, Municode, and CivicClerk.</p>
+
+        <div class="case-label">Approach</div>
+        <div class="case-body tight">
+          <div class="pill-row">
+            <span class="pill">CivicPlus</span>
+            <span class="pill">CivicRec</span>
+            <span class="pill">SeeClickFix</span>
+            <span class="pill">Municode</span>
+            <span class="pill">CivicClerk</span>
+            <span class="pill">Conversational AI</span>
+          </div>
+        </div>
+
+        <div class="case-label">Target impact</div>
+        <p class="case-body tight">Reduce routine call-center inquiries by allowing residents to self-serve common questions and navigate county services through one interface.</p>
+      </div>
+
+      <div class="artifact-slot">
+        <svg viewBox="0 0 680 300" role="img" aria-label="AI resident assistant architecture diagram">
+          <defs><marker id="arrow5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#6B6F76" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+          <g><rect x="230" y="20" width="220" height="44" rx="8" fill="#FAFAF7" stroke="#E1DFD6" stroke-width="1"/><text x="340" y="42" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="14" fill="#1B2A38">Resident question</text></g>
+          <line x1="340" y1="64" x2="340" y2="100" stroke="#6B6F76" stroke-width="1" marker-end="url(#arrow5)"/>
+          <g><rect x="210" y="100" width="260" height="56" rx="8" fill="#E1F0EB" stroke="#0F6E56" stroke-width="1"/><text x="340" y="120" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="14" fill="#085041">AI resident assistant</text><text x="340" y="138" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="12" fill="#0F6E56">Routes to civic platforms</text></g>
+          <line x1="340" y1="156" x2="100" y2="210" stroke="#6B6F76" stroke-width="1" marker-end="url(#arrow5)"/>
+          <line x1="340" y1="156" x2="220" y2="210" stroke="#6B6F76" stroke-width="1" marker-end="url(#arrow5)"/>
+          <line x1="340" y1="156" x2="340" y2="210" stroke="#6B6F76" stroke-width="1" marker-end="url(#arrow5)"/>
+          <line x1="340" y1="156" x2="460" y2="210" stroke="#6B6F76" stroke-width="1" marker-end="url(#arrow5)"/>
+          <line x1="340" y1="156" x2="580" y2="210" stroke="#6B6F76" stroke-width="1" marker-end="url(#arrow5)"/>
+          <g><rect x="45" y="210" width="110" height="44" rx="8" fill="#FAFAF7" stroke="#E1DFD6" stroke-width="1"/><text x="100" y="232" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="14" fill="#1B2A38">CivicPlus</text></g>
+          <g><rect x="165" y="210" width="110" height="44" rx="8" fill="#FAFAF7" stroke="#E1DFD6" stroke-width="1"/><text x="220" y="232" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="14" fill="#1B2A38">CivicRec</text></g>
+          <g><rect x="285" y="210" width="110" height="44" rx="8" fill="#FAFAF7" stroke="#E1DFD6" stroke-width="1"/><text x="340" y="232" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="14" fill="#1B2A38">SeeClickFix</text></g>
+          <g><rect x="405" y="210" width="110" height="44" rx="8" fill="#FAFAF7" stroke="#E1DFD6" stroke-width="1"/><text x="460" y="232" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="14" fill="#1B2A38">Municode</text></g>
+          <g><rect x="525" y="210" width="110" height="44" rx="8" fill="#FAFAF7" stroke="#E1DFD6" stroke-width="1"/><text x="580" y="232" text-anchor="middle" dominant-baseline="central" font-family="Inter" font-size="14" fill="#1B2A38">CivicClerk</text></g>
+        </svg>
+        <div class="artifact-caption">One interface routes resident questions across five civic systems</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="tel:+13026901532">(302) 690-1532</a>
+      <a href="mailto:abdullahyafiah@gmail.com">abdullahyafiah@gmail.com</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">GitHub</a>
+    </div>
+    <div style="margin-top:12px;">Wilmington, DE</div>
+  </div>
+</footer>
+
+</body>
+</html>
